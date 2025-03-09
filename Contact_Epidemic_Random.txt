@@ -1,0 +1,100 @@
+#
+# Default settings for the simulation
+#
+
+## Scenario settings
+Scenario.name = SprayAndWait
+Scenario.simulateConnections = true
+Scenario.updateInterval = 1
+
+
+# 43200s == 12h
+Scenario.endTime = 43200
+#Scenario.endTime = 16981816
+#987529 Haggle Cam
+#274883 Haggle
+#16981816 Reality
+Report.warmup = 1
+Scenario.nrofHostGroups = 1
+
+
+# "Bluetooth" interface for all nodes
+btInterface.type = SimpleBroadcastInterface
+# Transmit speed of 2 Mbps = 250kBps
+btInterface.transmitSpeed = 250k
+btInterface.transmitRange = 10
+btInterface.scanInterval = 120
+
+
+
+
+
+
+
+# Common settings for all groups
+Group.router = SprayAndWaitRouter
+Group.bufferSize = 20M
+
+## TTL 24 hours=1440, 1 week= 10080, 3 weeks= 30240
+Group.msgTtl = 10080
+Group.nrofInterfaces = 1
+Group.interface1 = btInterface
+
+
+#Group1 Information
+Group1.groupID = A
+Group1.waitTime = 10, 30
+Group1.speed = 0.8, 1.4
+Group1.nrofHosts = 97
+#36 Haggle Cam
+#41 Haggle
+#97 Reality
+Group1.nodeLocation = 10, 10
+Group1.movementModel = RandomWaypoint
+
+## Message creation parameters
+# How many event generators
+Events.nrof = 1
+# Class of the first event generator
+Events1.class = MessageEventGenerator
+# (following settings are specific for the MessageEventGenerator class)
+# Creation interval in seconds (one new message every 25 to 35 seconds)
+Events1.interval = 580, 620 
+# Message sizes (500kB - 1MB)
+Events1.size = 10k
+# range of message source/destination addresses
+Events1.hosts = 0, 96
+# Message ID prefix
+Events1.prefix = M
+
+
+## Movement model settings
+# seed for movement models' pseudo random number generator (default = 0)
+MovementModel.rngSeed = [2; 8372; 98092; 18293; 777]
+# World's size for Movement Models without implicit size (width, height; meters)
+MovementModel.worldSize = 100, 100
+
+
+
+
+
+
+
+
+# how many reports to load
+Report.nrofReports = 1
+
+# default directory of reports (can be overridden per Report with output setting)
+Report.reportDir = reports/Contact/RandomWaypoint
+
+
+# Report classes to load
+Report.report1 = ReportMessageContact
+#Report.report2 = MessageStatsReport
+
+## Default settings for some routers settings
+ProphetRouter.secondsInTimeUnit = 30
+SprayAndWaitRouter.nrofCopies = 6
+SprayAndWaitRouter.binaryMode = true
+
+
